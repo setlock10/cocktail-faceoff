@@ -3,8 +3,24 @@ body {
     color: white;
     font-family: 'Dancing Script';
     font-size: 50px;
+    
 }
 
 .cocktail {
-    font-size: 25px;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    display: inline-grid;
+    width: 300px;
+}
+
+#drinks {
+    margin: 2rem;
+    padding: 20px;
+    
+    
+    
+    
+
+
 }

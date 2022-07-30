@@ -3,32 +3,36 @@
 //Global variables
 //const url ="https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=15106"
 const url ="https://www.thecocktaildb.com/api/json/v1/1/random.php"
-const imgDrink1=document.createElement('img')
-const divDrink1=document.querySelector('#cocktail-1')
-const h2Drink1=document.createElement('h2')
+const imgDrink1=document.querySelector('#cocktail-1-image')
+const h2Drink1=document.querySelector('#cocktail-1-text')
+const imgDrink2=document.querySelector('#cocktail-2-image')
+const h2Drink2=document.querySelector('#cocktail-2-text')
 
 
-// Fetch on Page load
+
+//  page load
 document.addEventListener('DOMContentLoaded',()=>{
-    fetch(url)
+    getDrink(imgDrink1,h2Drink1)
+    getDrink(imgDrink2,h2Drink2)
+ })
 
+// Fetch a drink
+function getDrink(img,h2){
+
+    fetch(url)
         .then(res=>res.json())
         .then(data=>{
-            console.log(data.drinks[0])
-            imgDrink1.src=data.drinks[0].strDrinkThumb
-            imgDrink1.width=300
-            h2Drink1.textContent=data.drinks[0].strDrink
-            divDrink1.append(h2Drink1)
-            divDrink1.append(imgDrink1)
-
-
+            //drink=data.drinks[0]
+            //console.log(data)
+            img.src=data.drinks[0].strDrinkThumb
+            img.width=300
+            h2.textContent=data.drinks[0].strDrink
         })
         .catch(e=>console.error(e))
- 
+}
 
-
-
-
-})
-
+function renderDrink(drink){
+    //console.log(drink)
+    //drink1=drink
+}
 
