@@ -13,10 +13,9 @@ body {
     vertical-align:middle;
     display: inline-grid;
     height: 200px;
-    
- 
+}
 
-}.cocktail {
+.cocktail {
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
