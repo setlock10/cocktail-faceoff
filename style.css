@@ -2,12 +2,21 @@ body {
     background-color: black;
     color: white;
     font-family: 'Dancing Script';
-    font-family: 'Courier New', Courier, monospace;
-     font-size: 50px;
+    font-size: 50px;
     
 }
 
-.cocktail {
+.versus{
+    width: 40px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    vertical-align:middle;
+    display: inline-grid;
+    height: 200px;
+    
+ 
+
+}.cocktail {
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
@@ -20,16 +29,4 @@ body {
     margin: 2rem;
     padding: 20px;
  
-}
-.versus{
-    width: 40px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    
-    vertical-align:middle;
-    display: inline-grid;
-    height: 200px;
-    
- 
-
 }
