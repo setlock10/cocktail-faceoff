@@ -5,8 +5,10 @@
 const url ="https://www.thecocktaildb.com/api/json/v1/1/random.php"
 const imgDrink1=document.querySelector('#cocktail-1-image')
 const h2Drink1=document.querySelector('#cocktail-1-text')
+const pDrink1=document.querySelector('#cocktail-1-recipe')
 const imgDrink2=document.querySelector('#cocktail-2-image')
 const h2Drink2=document.querySelector('#cocktail-2-text')
+const pDrink2=document.querySelector('#cocktail-2-recipe')
 
 
 
@@ -23,7 +25,7 @@ function getDrink(img,h2){
         .then(res=>res.json())
         .then(data=>{
             //drink=data.drinks[0]
-            //console.log(data)
+            console.log(data.drinks[0])
             img.src=data.drinks[0].strDrinkThumb
             img.width=400
             h2.textContent=data.drinks[0].strDrink
