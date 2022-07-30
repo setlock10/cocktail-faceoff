@@ -12,16 +12,22 @@ body {
     text-align: center;
     vertical-align: bottom;
     display: inline-grid;
-    width: 400px;
+    width: 350px;
 }
 
 #drinks {
     margin: 2rem;
     padding: 20px;
+ 
+}
+.or{
+    width: 40px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
     
+    vertical-align:middle;
+    display: inline-grid;
+    height: 200px;
     
-    
-    
-
 
 }
