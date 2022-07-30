@@ -10,16 +10,18 @@ body {
     width: 40px;
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
-    vertical-align:middle;
+    /*vertical-align:middle;*/
     display: inline-grid;
-    height: 200px;
+    height: 300px;
+    color: red;
+    
 }
 
 .cocktail {
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
-    vertical-align: bottom;
+    /*vertical-align: bottom;*/
     display: inline-grid;
     width: 360px;
 }
