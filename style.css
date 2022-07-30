@@ -35,6 +35,7 @@ li{
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
     /*white-space: pre-wrap*/
+    vertical-align: top;
 
 
 
