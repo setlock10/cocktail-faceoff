@@ -28,5 +28,5 @@ If Vishwanathan Anand wins
 Garry Kasparov = 2500 + 24 (0 - 0.849) = 2479
 Vishwanathan Anand = 2200 + 24 (1+ 0.151) = 2220
 
-
+Huh
 
