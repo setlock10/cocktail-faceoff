@@ -25,7 +25,7 @@ function getDrink(img,h2){
             //drink=data.drinks[0]
             //console.log(data)
             img.src=data.drinks[0].strDrinkThumb
-            img.width=350
+            img.width=400
             h2.textContent=data.drinks[0].strDrink
         })
         .catch(e=>console.error(e))
@@ -34,5 +34,6 @@ function getDrink(img,h2){
 function renderDrink(drink){
     //console.log(drink)
     //drink1=drink
+    
 }
 
