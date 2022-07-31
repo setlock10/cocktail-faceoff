@@ -2,7 +2,8 @@
 //
 //Global variables
 //const url ="https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=15106"
-const url ="https://www.thecocktaildb.com/api/json/v1/1/random.php"
+const urlRandom ="https://www.thecocktaildb.com/api/json/v1/1/random.php"
+const urlMargarita="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
 const urlDrinkRatings="https://fake-server-app-jjs2.herokuapp.com/drink_ratings"
 const urlTotalRatings="https://fake-server-app-jjs2.herokuapp.com/total_ratings"
 let drinkWinner=1
@@ -36,8 +37,8 @@ const li5=document.querySelector('#id5')
 
 //  page load
 document.addEventListener('DOMContentLoaded',()=>{
-    getDrink(imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5)
-    getDrink(imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5)
+    getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5)
+    getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5)
     getTotalRankings()
     sortRankings()
 
@@ -129,18 +130,18 @@ function getDrinkRatings(div,score){
 
 
 function patchDrinkRating(drinkName,score,id,rating){
+    console.log(`${urlDrinkRatings}/${id}`)
     fetch(`${urlDrinkRatings}/${id}`,{
         method:'PATCH',
         headers:{"Content-Type":"application/json"},
-        body:{
-            "powerRating":rating+score
-        }
+        body:JSON.stringify({"powerRating":rating+score})
+    })
             .then(res=>res.json())
             .then(data=>{
              })
             .catch(e=>console.error(e))
 
-    })
+    
 
 }
 
@@ -205,7 +206,7 @@ function updateTotalRankings(){
 
 
 // Fetch a drink
-function getDrink(img,h2,li1,li2,li3,li4,li5){
+function getDrink(url,img,h2,li1,li2,li3,li4,li5){
 
     fetch(url)
         .then(res=>res.json())
