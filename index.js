@@ -25,6 +25,13 @@ const liDrink2_4=document.querySelector('#cocktail-2-recipe4')
 const liDrink2_5=document.querySelector('#cocktail-2-recipe5')
 const divCocktail1=document.querySelector('#cocktail-1')
 const divCocktail2=document.querySelector('#cocktail-2')
+const olDrinkRatings =document.querySelector('#rank-list')
+const li1=document.querySelector('#id1')
+const li2=document.querySelector('#id2')
+const li3=document.querySelector('#id3')
+const li4=document.querySelector('#id4')
+const li5=document.querySelector('#id5')
+
 
 
 //  page load
@@ -32,7 +39,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     getDrink(imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5)
     getDrink(imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5)
     getTotalRankings()
-    divCocktail1.classList.add("winner")
+    sortRankings()
+
+    //divCocktail1.children[0].textContent='Margarita'
+    
+    //getDrinkRatings(divCocktail1,0)
+
+    //divCocktail1.classList.add("winner")
     //divCocktail1.style.class="winner"
  })
 
@@ -40,7 +53,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  divCocktail1.addEventListener('click',()=>{
     drinkWinner=1
 
-    drinkMatchup()
+    updateTotalRankings()
 
     console.log("chose drink "+drinkWinner)
 
@@ -52,7 +65,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 divCocktail2.addEventListener('click',()=>{
     drinkWinner=2
-    drinkMatchup()
+    updateTotalRankings()
 
     console.log("chose drink "+drinkWinner)
 
@@ -62,27 +75,40 @@ divCocktail2.addEventListener('click',()=>{
 
 })
 
+function sortRankings(){
+    //console.log('going to sort')
+    //const li = document.createElement('li')
+    //olDrinkRatings.replaceChildren()
+ 
+    fetch (urlDrinkRatings)
+    .then(res=>res.json())
+    .then(drinks=>{
+        console.log(drinks)
+        drinks.sort((a,b)=> (a.powerRating>b.powerRating)?-1:1)
+        console.log(drinks)
+        for (let i=0;i<5;i++){
+            olDrinkRatings.children[i].textContent=`${drinks[i].powerRating} ${drinks[i].strDrink}`
+            
+        }
 
-
-
-// Score the matchup
-function drinkMatchup (){
-
-    updateTotalRankings()
+            
+    })
+    .catch(e=>console.error(e))
 
 }
 
 
+
 // Get the rated drinks 
 function getDrinkRatings(div,score){
-    //const drinkRatings =[]
+    //let drinkRatings =[]
     let i=0
     console.log(div.children[0].textContent)
 
     fetch (urlDrinkRatings)
     .then(res=>res.json())
     .then(drinks=>{
-        
+           
         console.log(drinks)
         drinks.forEach(drink=>{
             console.log(drink.strDrink)

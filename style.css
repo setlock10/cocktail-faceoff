@@ -6,6 +6,16 @@ body {
     
 }
 
+#rank-list{
+    position: absolute;
+    top: 50px;
+    left:400px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+
+
+}
+
 .versus{
     width: 40px;
     font-size: 30px;
