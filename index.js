@@ -84,9 +84,9 @@ function sortRankings(){
     fetch (urlDrinkRatings)
     .then(res=>res.json())
     .then(drinks=>{
-        console.log(drinks)
+        //console.log(drinks)
         drinks.sort((a,b)=> (a.powerRating>b.powerRating)?-1:1)
-        console.log(drinks)
+        //console.log(drinks)
         for (let i=0;i<5;i++){
             olDrinkRatings.children[i].textContent=`${drinks[i].powerRating} ${drinks[i].strDrink}`
             
@@ -104,15 +104,15 @@ function sortRankings(){
 function getDrinkRatings(div,score){
     //let drinkRatings =[]
     let i=0
-    console.log(div.children[0].textContent)
+    //console.log(div.children[0].textContent)
 
     fetch (urlDrinkRatings)
     .then(res=>res.json())
     .then(drinks=>{
            
-        console.log(drinks)
+        //console.log(drinks)
         drinks.forEach(drink=>{
-            console.log(drink.strDrink)
+            //console.log(drink.strDrink)
             if(drink.strDrink==div.children[0].textContent){
                 patchDrinkRating(div.children[0].textContent,score,drink.id,drink.powerRating)
                 i=1;
@@ -130,7 +130,7 @@ function getDrinkRatings(div,score){
 
 
 function patchDrinkRating(drinkName,score,id,rating){
-    console.log(`${urlDrinkRatings}/${id}`)
+    //console.log(`${urlDrinkRatings}/${id}`)
     fetch(`${urlDrinkRatings}/${id}`,{
         method:'PATCH',
         headers:{"Content-Type":"application/json"},
@@ -196,7 +196,7 @@ function updateTotalRankings(){
         })
         .catch(e=>console.error(e))
 
-    console.log("updated total rankings "+totalRatings)
+    //console.log("updated total rankings "+totalRatings)
 
 
 }
@@ -212,7 +212,7 @@ function getDrink(url,img,h2,li1,li2,li3,li4,li5){
         .then(res=>res.json())
         .then(data=>{
             //drink=data.drinks[0]
-            console.log(data.drinks[0])
+            //console.log(data.drinks[0])
             img.src=data.drinks[0].strDrinkThumb
             img.width=360
             h2.textContent=data.drinks[0].strDrink
