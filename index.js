@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     result2W=tempRating2+24*(1-prob2)
     result2L=tempRating2+24*(0-prob2)
 
+    console.log()
+
 
    
 
