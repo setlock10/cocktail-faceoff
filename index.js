@@ -41,10 +41,28 @@ document.addEventListener('DOMContentLoaded',()=>{
     getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5)
     getTotalRankings()
     sortRankings()
+    calcElo()
 
     
-    let tempRating1=1650
-    let tempRating2=1450
+
+
+   
+
+
+
+    //divCocktail1.children[0].textContent='Margarita'
+    
+    //getDrinkRatings(divCocktail1,0)
+
+    //divCocktail1.classList.add("winner")
+    //divCocktail1.style.class="winner"
+ })
+
+ function calcElo(){
+
+    let tempRating1=2500
+    let tempRating2=2200
+    let kFactor=24
 
     var prob1
     var prob2
@@ -61,23 +79,20 @@ document.addEventListener('DOMContentLoaded',()=>{
     console.log(`Probalility 2: ${prob2.toFixed(3)*100}%`)
 
     
-    result1W=tempRating1+24*(1-prob1)
-    result1L=tempRating2+24*(0-prob1)
-    result2W=tempRating2+24*(1-prob2)
-    result2L=tempRating2+24*(0-prob2)
+    result1W=tempRating1+kFactor*(1-prob1)
+    result1L=tempRating1+kFactor*(0-prob1)
+    result2W=tempRating2+kFactor*(1-prob2)
+    result2L=tempRating2+kFactor*(0-prob2)
+
+    console.log(`Result 1 Win: ${parseInt(result1W)}`)
+    console.log(`Result 1 Loss: ${parseInt(result1L)}`)
+    console.log(`Result 2 Win: ${parseInt(result2W)}`)
+    console.log(`Result 2 Loss: ${parseInt(result2L)}`)
 
 
-   
 
 
-
-    //divCocktail1.children[0].textContent='Margarita'
-    
-    //getDrinkRatings(divCocktail1,0)
-
-    //divCocktail1.classList.add("winner")
-    //divCocktail1.style.class="winner"
- })
+ }
 
 
  divCocktail1.addEventListener('click',()=>{
