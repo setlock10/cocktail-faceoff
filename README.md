@@ -2,6 +2,8 @@
 
 Power Rating Cocktails
 
+Installed math.js using "npm install mathjs"
+
 Once you vote it should tell you there was a x% chance of winning the matchup
 
 Use the ELO rankings
