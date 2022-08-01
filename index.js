@@ -42,6 +42,35 @@ document.addEventListener('DOMContentLoaded',()=>{
     getTotalRankings()
     sortRankings()
 
+    
+    let tempRating1=1650
+    let tempRating2=1450
+
+    var prob1
+    var prob2
+
+    var result1W
+    var result2W
+    var result1L
+    var result2L
+
+
+    prob1 =(1.0/(1.0+ Math.pow(10,((tempRating2-tempRating1)/400))))
+    prob2 =(1.0/(1.0+ Math.pow(10,((tempRating1-tempRating2)/400))))
+    console.log(`Probalility 1: ${prob1.toFixed(3)*100}%`)
+    console.log(`Probalility 2: ${prob2.toFixed(3)*100}%`)
+
+    
+    result1W=tempRating1+24*(1-prob1)
+    result1L=tempRating2+24*(0-prob1)
+    result2W=tempRating2+24*(1-prob2)
+    result2L=tempRating2+24*(0-prob2)
+
+
+   
+
+
+
     //divCocktail1.children[0].textContent='Margarita'
     
     //getDrinkRatings(divCocktail1,0)
@@ -121,6 +150,8 @@ function getDrinkRatings(div,score){
         if(i==0){
             postDrinkRating(div.children[0].textContent,score)
         }
+
+        
 
             
     })
