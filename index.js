@@ -84,10 +84,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     result2W=tempRating2+kFactor*(1-prob2)
     result2L=tempRating2+kFactor*(0-prob2)
 
+
     console.log(`Result 1 Win: ${parseInt(result1W)}`)
     console.log(`Result 1 Loss: ${parseInt(result1L)}`)
     console.log(`Result 2 Win: ${parseInt(result2W)}`)
     console.log(`Result 2 Loss: ${parseInt(result2L)}`)
+
 
 
 
