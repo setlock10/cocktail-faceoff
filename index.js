@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  })
 
  function calcElo(){
-
+//test 2
+//new comment 3
     let tempRating1=2500
     let tempRating2=2200
     let kFactor=24
@@ -135,7 +136,9 @@ function sortRankings(){
         //console.log(drinks)
         for (let i=0;i<5;i++){
             olDrinkRatings.children[i].textContent=`${drinks[i].powerRating} ${drinks[i].strDrink}`
-            
+            olDrinkRatings.children[i].addEventListener('click', ()=>{
+                console.log('clicked')
+            })
         }
 
             
