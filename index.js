@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
  function calcElo(){
 //test 2
+//new comment
     let tempRating1=2500
     let tempRating2=2200
     let kFactor=24
