@@ -6,6 +6,9 @@ const urlRandom ="https://www.thecocktaildb.com/api/json/v1/1/random.php"
 const urlMargarita="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
 const urlDrinkRatings="https://fake-server-app-jjs2.herokuapp.com/drink_ratings"
 const urlTotalRatings="https://fake-server-app-jjs2.herokuapp.com/total_ratings"
+//const urlDrinkRatings="./ratings.json/drink_ratings"
+//const urlTotalRatings="./ratings.json/total_ratings"
+const urlLocalRatings="./ratings.json"
 const urlDrinkName="https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 let drinkWinner=1
 var totalRatings 
@@ -36,31 +39,20 @@ const li2=document.querySelector('#id2')
 const li3=document.querySelector('#id3')
 const li4=document.querySelector('#id4')
 const li5=document.querySelector('#id5')
-const popUpDrink=document.querySelector('#drink-pop-up')
+const divPopUpDrink=document.querySelector('#drink-pop-up')
 
 
 
 //  page load
 document.addEventListener('DOMContentLoaded',()=>{
+    //Populates the Cocktail Div Cards
     getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
     getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
+
+    //Gets the current power rankings from ratings.json
     getTotalRankings()
     sortRankings()
-    //calcElo()
-    
-    
-
-
-   
-
-
-
-    //divCocktail1.children[0].textContent='Margarita'
-    
-    //getDrinkRatings(divCocktail1,0)
-
-    //divCocktail1.classList.add("winner")
-    //divCocktail1.style.class="winner"
+ 
  })
 
  function calcElo(h6Winner,h6Loser){
@@ -138,10 +130,10 @@ function sortRankings(){
         for (let i=0;i<5;i++){
             olDrinkRatings.children[i].textContent=`${drinks[i].powerRating} ${drinks[i].strDrink}`
             olDrinkRatings.children[i].addEventListener('click', ()=>{
-                popUpDrink.classList.add("appear")
+                divPopUpDrink.classList.add("appear")
                 getSingleDrink(drinks[i].strDrink)
-                popUpDrink.addEventListener('click',()=>{
-                    popUpDrink.classList.remove("appear")
+                divPopUpDrink.addEventListener('click',()=>{
+                    divPopUpDrink.classList.remove("appear")
                     
                 })
             })
@@ -256,10 +248,12 @@ function postNewDrinkRating(drinkName,score){
 // Get the total rankings
 function getTotalRankings(){
     fetch (urlTotalRatings)
+    //fetch ("ratings.json/total_ratings")
         .then(res=>res.json())
         .then(data=>{
             totalRatings=data[0].total_ratings
             console.log("total ratings from server "+totalRatings)
+            //console.log(data)
         })
         .catch(e=>console.error(e))
         //totalRatings++;
@@ -298,6 +292,14 @@ function getSingleDrink(drinkName){
     .then(res=>res.json())
     .then(data=>{
         console.log(data.drinks[0])
+        let img=document.createElement('img')
+        img.src=data.drinks[0].strDrinkThumb
+        img.width=360
+        divPopUpDrink.append(img)
+
+
+        
+
     })
 
 
