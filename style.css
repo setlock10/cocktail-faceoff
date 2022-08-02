@@ -11,15 +11,15 @@ body {
     color: white;
     font-family: 'Bad Script';
     font-size: 60px;
-    margin-left: 770px;
+    margin-left: 450px;
     position:static;
  
 }
 
 #rank-list{
-    position: s;
-    top: 50px;
-    left:400px;
+    position: fixed;
+    margin-left: 1000px;
+    margin-top: -300px;
     font-size: 35px;
     font-family: 'Courier New', Courier, monospace;
     border-style: groove;
@@ -76,7 +76,7 @@ h4 {
     font-family:'Open Sans';
     color:rgb(0, 195, 255);
     text-shadow: 6px 3px 3px blueviolet;
-    margin-left: 750px;
+    margin-left: 450px;
     
     
 }
@@ -124,4 +124,12 @@ ul{
 
 ol{
     text-align: center;
+}
+
+.vanish{
+    visibility: hidden;
+}
+
+.appear{
+    visibility:visible;
 }
