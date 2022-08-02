@@ -35,6 +35,7 @@ const li2=document.querySelector('#id2')
 const li3=document.querySelector('#id3')
 const li4=document.querySelector('#id4')
 const li5=document.querySelector('#id5')
+const popUpDrink=document.querySelector('#drink-pop-up')
 
 
 
@@ -137,6 +138,10 @@ function sortRankings(){
             olDrinkRatings.children[i].textContent=`${drinks[i].powerRating} ${drinks[i].strDrink}`
             olDrinkRatings.children[i].addEventListener('click', ()=>{
                 console.log('clicked')
+                popUpDrink.classList.add("appear")
+                popUpDrink.addEventListener('click',()=>{
+                    popUpDrink.classList.remove("appear")
+                })
             })
         }
 
@@ -280,7 +285,13 @@ function updateTotalRankings(){
 
 }
 
+// Get a single drink
+function getSingleDrink(urlDrinkName){
 
+
+
+    
+}
 
 
 
