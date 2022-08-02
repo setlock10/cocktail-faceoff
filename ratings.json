@@ -1,0 +1,18 @@
+{
+    "total_ratings":[
+        {
+            "id":1,
+            "total_ratings":1
+        }
+    ],
+
+    "drink_ratings":[
+        {
+            "id":1,
+            "strDrink":"Margarita",
+            "powerRating":1512,
+            "likes":1
+        }
+
+    ]
+  }
