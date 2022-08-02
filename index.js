@@ -6,7 +6,7 @@ const urlRandom ="https://www.thecocktaildb.com/api/json/v1/1/random.php"
 const urlMargarita="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
 const urlDrinkRatings="https://fake-server-app-jjs2.herokuapp.com/drink_ratings"
 const urlTotalRatings="https://fake-server-app-jjs2.herokuapp.com/total_ratings"
-const urlDrinkName="www.thecocktaildb.com/api/json/v1/1/search.php?s="
+const urlDrinkName="https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 let drinkWinner=1
 var totalRatings 
 
@@ -290,13 +290,15 @@ function updateTotalRankings(){
 // Get a single drink
 function getSingleDrink(drinkName){
 
-    console.log(urlDrinkName+drinkName)
+    //console.log(urlRandom)
+    //var url= urlDrinkName+drinkName
  
-    // fetch (urlDrinkName+drinkName)
-    // .then(res=>res.json())
-    // .then(drink=>{
-    //     console.log(drink)
-    // })
+//    fetch ("www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
+    fetch (urlDrinkName+drinkName)
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data.drinks[0])
+    })
 
 
 
