@@ -39,8 +39,17 @@ const li3=document.querySelector('#id3')
 const li4=document.querySelector('#id4')
 const li5=document.querySelector('#id5')
 const divPopUpDrink=document.querySelector('#drink-pop-up')
+
 const divFilter=document.querySelector('#filter')
 const divDropdown=document.querySelector('#dropdown')
+
+const cocktailThreeText=document.querySelector('#cocktail-3-text')
+const li6=document.querySelector('#cocktail-3-recipe1')
+const li7=document.querySelector('#cocktail-3-recipe2')
+const li8=document.querySelector('#cocktail-3-recipe3')
+const li9=document.querySelector('#cocktail-3-recipe4')
+const li10=document.querySelector('#cocktail-3-recipe5')
+
 
 
 
@@ -148,6 +157,10 @@ function sortRankings(){
                 getSingleDrink(drinks[i].strDrink)
                 divPopUpDrink.addEventListener('click',()=>{
                     divPopUpDrink.classList.remove("appear")
+                    
+                    
+                    
+
                     
                 })
             })
@@ -306,13 +319,18 @@ function getSingleDrink(drinkName){
     .then(res=>res.json())
     .then(data=>{
         console.log(data.drinks[0])
-        let img=document.createElement('img')
+        let img=document.querySelector('#cocktail-3-image')
         img.src=data.drinks[0].strDrinkThumb
         img.width=360
-        divPopUpDrink.append(img)
-
-
+        //divPopUpDrink.append(img)
+        cocktailThreeText.textContent=data.drinks[0].strDrink
+        li6.textContent=`${data.drinks[0].strMeasure1} ${data.drinks[0].strIngredient1}`
+        li7.textContent=`${data.drinks[0].strMeasure2} ${data.drinks[0].strIngredient2}`
+        li8.textContent=`${data.drinks[0].strMeasure3} ${data.drinks[0].strIngredient3}`
+        li9.textContent=`${data.drinks[0].strMeasure4} ${data.drinks[0].strIngredient4}`
+        li10.textContent=`${data.drinks[0].strMeasure5} ${data.drinks[0].strIngredient5}`
         
+
 
     })
 
