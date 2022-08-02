@@ -9,9 +9,11 @@ const urlTotalRatings="https://fake-server-app-jjs2.herokuapp.com/total_ratings"
 let drinkWinner=1
 var totalRatings 
 
+
 // DOM Selectors
 const imgDrink1=document.querySelector('#cocktail-1-image')
 const h2Drink1=document.querySelector('#cocktail-1-text')
+const h6Rating1=document.querySelector('#cocktail-1-rating')
 const liDrink1_1=document.querySelector('#cocktail-1-recipe1')
 const liDrink1_2=document.querySelector('#cocktail-1-recipe2')
 const liDrink1_3=document.querySelector('#cocktail-1-recipe3')
@@ -19,6 +21,7 @@ const liDrink1_4=document.querySelector('#cocktail-1-recipe4')
 const liDrink1_5=document.querySelector('#cocktail-1-recipe5')
 const imgDrink2=document.querySelector('#cocktail-2-image')
 const h2Drink2=document.querySelector('#cocktail-2-text')
+const h6Rating2=document.querySelector('#cocktail-2-rating')
 const liDrink2_1=document.querySelector('#cocktail-2-recipe1')
 const liDrink2_2=document.querySelector('#cocktail-2-recipe2')
 const liDrink2_3=document.querySelector('#cocktail-2-recipe3')
@@ -37,12 +40,12 @@ const li5=document.querySelector('#id5')
 
 //  page load
 document.addEventListener('DOMContentLoaded',()=>{
-    getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5)
-    getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5)
+    getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
+    getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
     getTotalRankings()
     sortRankings()
-    calcElo()
-
+    //calcElo()
+    
     
 
 
@@ -58,21 +61,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     //divCocktail1.style.class="winner"
  })
 
- function calcElo(){
+ function calcElo(h6Winner,h6Loser){
 //test 2
 //new comment 3
-    let tempRating1=2500
-    let tempRating2=2200
-    let kFactor=24
+    let tempRating1=parseInt(h6Winner.textContent)
+    let tempRating2=parseInt(h6Loser.textContent)
+    let kFactor=50
 
     var prob1
     var prob2
 
-    var result1W
-    var result2W
-    var result1L
-    var result2L
-
+   
 
     prob1 =(1.0/(1.0+ Math.pow(10,((tempRating2-tempRating1)/400))))
     prob2 =(1.0/(1.0+ Math.pow(10,((tempRating1-tempRating2)/400))))
@@ -80,17 +79,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     console.log(`Probalility 2: ${prob2.toFixed(3)*100}%`)
 
     
-    result1W=tempRating1+kFactor*(1-prob1)
-    result1L=tempRating1+kFactor*(0-prob1)
-    result2W=tempRating2+kFactor*(1-prob2)
-    result2L=tempRating2+kFactor*(0-prob2)
+    h6Winner.textContent=parseInt(tempRating1+kFactor*(1-prob1))
+    //result1L=tempRating1+kFactor*(0-prob1)
+    //result2W=tempRating2+kFactor*(1-prob2)
+    h6Loser.textContent=parseInt(tempRating2+kFactor*(0-prob2))
+    //h6Loser.textContent=tempRating2+kFactor*(0-prob2)
 
 
-    console.log(`Result 1 Win: ${parseInt(result1W)}`)
-    console.log(`Result 1 Loss: ${parseInt(result1L)}`)
-    console.log(`Result 2 Win: ${parseInt(result2W)}`)
-    console.log(`Result 2 Loss: ${parseInt(result2L)}`)
-
+    
 
 
 
@@ -105,8 +101,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     console.log("chose drink "+drinkWinner)
 
-    getDrinkRatings(divCocktail1,25)
-    getDrinkRatings(divCocktail2,(-25))
+    calcElo(h6Rating1,h6Rating2)
+
+    updateDrinkRatings(divCocktail1,parseInt(h6Rating1.textContent))
+    updateDrinkRatings(divCocktail2,parseInt(h6Rating2.textContent))
     
 
 })
@@ -116,9 +114,10 @@ divCocktail2.addEventListener('click',()=>{
     updateTotalRankings()
 
     console.log("chose drink "+drinkWinner)
+    calcElo(h6Rating2,h6Rating1)
 
-    getDrinkRatings(divCocktail2,25)
-    getDrinkRatings(divCocktail1,(-25))
+    updateDrinkRatings(divCocktail2,parseInt(h6Rating1.textContent))
+    updateDrinkRatings(divCocktail1,parseInt(h6Rating1.textContent))
     
 
 })
@@ -149,8 +148,39 @@ function sortRankings(){
 
 
 
+
 // Get the rated drinks 
-function getDrinkRatings(div,score){
+function getDrinkRatings(h6Rating,drinkName){
+    //h6Rating.textContent=parseInt(h6Rating.textContent)+125
+    //console.log(h6Rating.textContent)
+    let i = 0
+
+    fetch (urlDrinkRatings)
+    .then(res=>res.json())
+    .then(drinks=>{
+           
+        //console.log(drinks)
+        drinks.forEach(drink=>{
+            //console.log(drink.strDrink)
+            if(drink.strDrink==drinkName){
+                
+                h6Rating.textContent= drink.powerRating
+                i=1;
+            }
+        })
+        if(i==0){
+            h6Rating.textContent=1500
+        }
+           
+    })
+    .catch(e=>console.error(e))
+
+}
+
+
+
+// Update the drink ratings
+function updateDrinkRatings(div,score){
     //let drinkRatings =[]
     let i=0
     //console.log(div.children[0].textContent)
@@ -163,17 +193,15 @@ function getDrinkRatings(div,score){
         drinks.forEach(drink=>{
             //console.log(drink.strDrink)
             if(drink.strDrink==div.children[0].textContent){
+                
                 patchDrinkRating(div.children[0].textContent,score,drink.id,drink.powerRating)
                 i=1;
             }
         })
         if(i==0){
-            postDrinkRating(div.children[0].textContent,score)
+            postNewDrinkRating(div.children[0].textContent,score)
         }
-
-        
-
-            
+           
     })
     .catch(e=>console.error(e))
     //totalRatings++;
@@ -185,7 +213,7 @@ function patchDrinkRating(drinkName,score,id,rating){
     fetch(`${urlDrinkRatings}/${id}`,{
         method:'PATCH',
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({"powerRating":rating+score})
+        body:JSON.stringify({"powerRating":score})
     })
             .then(res=>res.json())
             .then(data=>{
@@ -196,13 +224,13 @@ function patchDrinkRating(drinkName,score,id,rating){
 
 }
 
-function postDrinkRating(drinkName,score){
+function postNewDrinkRating(drinkName,score){
     fetch(urlDrinkRatings,{
         method:'POST',
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({ 
             "strDrink":drinkName,
-            "powerRating":1500+score
+            "powerRating":score
         })
     })
         .then(res=>res.json())
@@ -257,7 +285,7 @@ function updateTotalRankings(){
 
 
 // Fetch a drink
-function getDrink(url,img,h2,li1,li2,li3,li4,li5){
+function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating){
 
     fetch(url)
         .then(res=>res.json())
@@ -280,6 +308,8 @@ function getDrink(url,img,h2,li1,li2,li3,li4,li5){
             if(data.drinks[0].strIngredient5==null) {li5.remove()}
 
             
+
+            getDrinkRatings(h6Rating,data.drinks[0].strDrink)
 
 
 

@@ -1,25 +1,31 @@
 body {
-    background-color: black;
-    color: white;
+    background-image: url("https://img.theculturetrip.com/1440x807/smart/wp-content/uploads/2016/09/main-bar-at-tir-na-nog.jpg");
+    background-size: cover;
+    color: rgb(255, 173, 234);
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
     
 }
 #logo{
-    background-color: black;
+    
     color: white;
     font-family: 'Bad Script';
-    font-size: 45px;
+    font-size: 60px;
+    margin-left: 770px;
+    position:static;
  
 }
 
 #rank-list{
-    position: absolute;
+    position: s;
     top: 50px;
     left:400px;
-    font-size: 30px;
+    font-size: 35px;
     font-family: 'Courier New', Courier, monospace;
-
+    border-style: groove;
+    border-color: rgb(69, 0, 197);
+    text-align: center;
+    background-image: url("https://papers.co/wallpaper/papers.co-nf87-city-night-lights-building-pattern-dark-night-30-wallpaper.jpg");
 
 }
 
@@ -30,7 +36,7 @@ body {
     /*vertical-align:middle;*/
     display: inline-grid;
     height: 300px;
-    color: red;    
+    color: red;   
  
     
 }
@@ -47,24 +53,75 @@ body {
 #drinks {
     margin: 2rem;
     padding: 20px;
+    margin-left: 475px;
  
 }
 
 li {
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgb(132, 185, 255);
+    text-shadow: 2px 2px 2px rgb(137, 33, 255);
     text-align: left;
     /*white-space: pre-wrap*/
     vertical-align: top;
+    text-align: center;
 }
 
-.face-off-font {
+h4 {
     position: absolute;
-    top: 150px;
+    top: 175px;
     left:100px;
-    font-size:30px;
+    font-size:50px;
     font-family:'Open Sans';
-    color:red;
-    text-shadow: 6px 3px, 2px rgb(111, 105, 105);
+    color:rgb(0, 195, 255);
+    text-shadow: 6px 3px 3px blueviolet;
+    margin-left: 750px;
     
+    
+}
+
+h2{
+    font-size: 40px;
+    color: rgb(250, 195, 232);
+    text-shadow: 3px 2px 2px rgb(155, 79, 255);
+    border-style: double;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB_PQ5oYEuvr-P01zLhBfvcvajPdiV2U_WC4Tz8Zn6dMSlunhVavg6BAQqgb1-QOFgCqE&usqp=CAU");
+}
+
+#cocktail-2-image{
+    border-style: inset;
+    margin: 10px;
+    border-color: rgb(0, 20, 202);
+    border-width: 6px;
+    
+    
+}
+
+#cocktail-1-image{
+    border-style: inset;
+    margin: 10px;
+    border-color: rgb(0, 20, 202);
+    border-width: 6px;
+    
+}
+
+.versus{
+    color: rgb(253, 109, 169);
+    border-style: none;
+    margin-left: 20px;
+    background-image: none;
+    font-size: 45px;
+}
+
+ul{
+    border-style: double;
+    border-width: 4px;
+    color: rgb(66, 0, 173);
+    text-align: center;
+    background-image: url("https://papers.co/wallpaper/papers.co-nf87-city-night-lights-building-pattern-dark-night-30-wallpaper.jpg");
+}
+
+ol{
+    text-align: center;
 }
