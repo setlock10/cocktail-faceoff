@@ -17,7 +17,7 @@ body {
 }
 
 #rank-list{
-    position: fixed;
+    position: absolute;
     margin-left: 1000px;
     margin-top: -300px;
     font-size: 35px;
@@ -58,7 +58,7 @@ body {
 }
 
 li {
-    font-size: 25px;
+    font-size: 17px;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: rgb(132, 185, 255);
     text-shadow: 2px 2px 2px rgb(137, 33, 255);
@@ -82,7 +82,8 @@ h4 {
 }
 
 h2{
-    font-size: 40px;
+    position: static;
+    font-size: 30px;
     color: rgb(250, 195, 232);
     text-shadow: 3px 2px 2px rgb(155, 79, 255);
     border-style: double;
@@ -132,4 +133,18 @@ ol{
 
 .appear{
     visibility:visible;
+}
+
+#drink-pop-up{
+    margin-left: 730px;
+}
+
+#cocktail-3-text{
+    margin-right: 800px;
+    text-align: center;
+}
+
+#cocktail-3-recipe-list{
+    margin-right: 800px;
+    text-align: center;
 }
