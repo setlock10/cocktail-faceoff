@@ -109,7 +109,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
  }
-
+divCocktail1.addEventListener('mouseover', (e)=>{
+    //imgDrink1.classList.add("glow")
+})
 
  divCocktail1.addEventListener('click',()=>{
     drinkWinner=1
