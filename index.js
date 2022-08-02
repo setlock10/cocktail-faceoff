@@ -7,8 +7,7 @@ const urlMargarita="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mar
 const urlDrinkRatings="https://fake-server-app-jjs2.herokuapp.com/drink_ratings"
 const urlTotalRatings="https://fake-server-app-jjs2.herokuapp.com/total_ratings"
 //const urlDrinkRatings="./ratings.json/drink_ratings"
-//const urlTotalRatings="./ratings.json/total_ratings"
-const urlLocalRatings="./ratings.json"
+const urlLocalTotalRatings="./ratings.json/total_ratings"
 const urlDrinkName="https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 let drinkWinner=1
 var totalRatings 
@@ -40,6 +39,8 @@ const li3=document.querySelector('#id3')
 const li4=document.querySelector('#id4')
 const li5=document.querySelector('#id5')
 const divPopUpDrink=document.querySelector('#drink-pop-up')
+const divFilter=document.querySelector('#filter')
+const divDropdown=document.querySelector('#dropdown')
 
 
 
@@ -54,6 +55,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     sortRankings()
  
  })
+
+ // Filter Dropdown mouseover event
+ divFilter.addEventListener('mouseover',(e)=>{
+    //console.log(e)
+    divDropdown.classList.remove("vanish")
+ })
+
+ // Filter Dropdown mouseover event
+ divFilter.addEventListener('mouseout',(e)=>{
+    //console.log(e)
+    divDropdown.classList.add("vanish")
+ })
+
 
  function calcElo(h6Winner,h6Loser){
 //test 2
@@ -248,7 +262,7 @@ function postNewDrinkRating(drinkName,score){
 // Get the total rankings
 function getTotalRankings(){
     fetch (urlTotalRatings)
-    //fetch ("ratings.json/total_ratings")
+    //fetch ("./ratings.json/total_ratings")
         .then(res=>res.json())
         .then(data=>{
             totalRatings=data[0].total_ratings
