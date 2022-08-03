@@ -48,6 +48,8 @@ const li7=document.querySelector('#cocktail-3-recipe2')
 const li8=document.querySelector('#cocktail-3-recipe3')
 const li9=document.querySelector('#cocktail-3-recipe4')
 const li10=document.querySelector('#cocktail-3-recipe5')
+const btnLikes1=document.querySelector('#btnLikes1')
+const btnLikes2=document.querySelector('#btnLikes2')
 
 const checkedVodka =true
 const checkedGin = true
