@@ -116,6 +116,7 @@ imgDrink1.addEventListener('mouseover', (e)=>{
 imgDrink1.addEventListener('mouseout', (e)=>{
     imgDrink1.classList.remove("glow")
     imgDrink1.setAttribute("style", "border-color:blue;")
+
 })
 
  divCocktail1.addEventListener('click',()=>{
