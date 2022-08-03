@@ -6,7 +6,6 @@ const urlRandom ="https://www.thecocktaildb.com/api/json/v1/1/random.php"
 const urlMargarita="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
 const urlDrinkRatings="https://fake-server-app-jjs2.herokuapp.com/drink_ratings"
 const urlTotalRatings="https://fake-server-app-jjs2.herokuapp.com/total_ratings"
-//const urlDrinkRatings="./ratings.json/drink_ratings"
 const urlLocalTotalRatings="./ratings.json/total_ratings"
 const urlDrinkName="https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 let drinkWinner=1
@@ -50,6 +49,12 @@ const li8=document.querySelector('#cocktail-3-recipe3')
 const li9=document.querySelector('#cocktail-3-recipe4')
 const li10=document.querySelector('#cocktail-3-recipe5')
 
+const checkedVodka =true
+const checkedGin = true
+const checkedBourbon = true
+const checkedWhiskey = true
+const checkedTequilla = true
+
 
 
 
@@ -62,7 +67,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     //Gets the current power rankings from ratings.json
     getTotalRankings()
     sortRankings()
- 
+    handleCheckBoxes()
+
+    //document.cookie = 'ppkcookie1=testcookie; expires=Thu, 2 Aug 2001 20:47:11 UTC; path=/'
+    
  })
 
  // Filter Dropdown mouseover event
@@ -294,9 +302,11 @@ function postNewDrinkRating(drinkName,score){
 // Get the total rankings
 function getTotalRankings(){
     fetch (urlTotalRatings)
-    //fetch ("./ratings.json/total_ratings")
+    //fetch ("../ratings.json")   //implementing local json data
         .then(res=>res.json())
         .then(data=>{
+            //console.log(data.total_ratings[0].total_ratings) //implementing local json data
+            
             totalRatings=data[0].total_ratings
             console.log("total ratings from server "+totalRatings)
             //console.log(data)
@@ -399,4 +409,62 @@ function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating){
 
         })
         .catch(e=>console.error(e))
+
+}
+
+// CheckBoxes
+function handleCheckBoxes()
+{
+    if (readCookie(checkedVodka)==null){
+        setCookies()
+    }
+    else{
+        setChecks()
+    }
+
+    
+        console.log(divDropdown.children)
+    
+ 
+
+}
+
+//Cookies
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}
+
+function setCookies(){
+    createCookie(checkedVodka,true,10)
+    createCookie(checkedGin,true,10)
+    createCookie(checkedBourbon,true,10)
+    createCookie(checkedWhiskey,true,10)
+    createCookie(checkedTequilla,true,10)
+    
+}
+
+function setChecks(){
+    
+
 }
