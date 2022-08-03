@@ -109,8 +109,14 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
  }
-divCocktail1.addEventListener('mouseover', (e)=>{
-    //imgDrink1.classList.add("glow")
+imgDrink1.addEventListener('mouseover', (e)=>{
+    imgDrink1.classList.add("glow")
+    imgDrink1.setAttribute("style", "border-color:white;")
+})
+imgDrink1.addEventListener('mouseout', (e)=>{
+    imgDrink1.classList.remove("glow")
+    imgDrink1.setAttribute("style", "border-color:blue;")
+
 })
 
  divCocktail1.addEventListener('click',()=>{
@@ -126,6 +132,17 @@ divCocktail1.addEventListener('mouseover', (e)=>{
     updateDrinkRatings(divCocktail2,parseInt(h6Rating2.textContent))
     
 
+})
+
+imgDrink2.addEventListener('mouseover', (e)=>{
+    imgDrink2.classList.add("glow")
+    imgDrink2.setAttribute("style", "border-color:white;")
+    
+})
+
+imgDrink2.addEventListener('mouseout', (e)=>{
+    imgDrink2.classList.add("glow")
+    imgDrink2.setAttribute("style", "border-color:blue;")
 })
 
 divCocktail2.addEventListener('click',()=>{
@@ -331,6 +348,11 @@ function getSingleDrink(drinkName){
         li8.textContent=`${data.drinks[0].strMeasure3} ${data.drinks[0].strIngredient3}`
         li9.textContent=`${data.drinks[0].strMeasure4} ${data.drinks[0].strIngredient4}`
         li10.textContent=`${data.drinks[0].strMeasure5} ${data.drinks[0].strIngredient5}`
+            if(data.drinks[0].strIngredient1==null) {li6.remove()}
+            if(data.drinks[0].strIngredient2==null) {li7.remove()}
+            if(data.drinks[0].strIngredient3==null) {li8.remove()}
+            if(data.drinks[0].strIngredient4==null) {li9.remove()}
+            if(data.drinks[0].strIngredient5==null) {li10.remove()}
         
 
 
