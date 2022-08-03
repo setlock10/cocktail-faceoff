@@ -77,6 +77,7 @@ h4 {
     color:rgb(0, 195, 255);
     text-shadow: 6px 3px 3px blueviolet;
     margin-left: 450px;
+    margin-top: 150px;
     
     
 }
@@ -87,23 +88,24 @@ h2{
     color: rgb(250, 195, 232);
     text-shadow: 3px 2px 2px rgb(155, 79, 255);
     border-style: double;
+    border-width: 8px;
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB_PQ5oYEuvr-P01zLhBfvcvajPdiV2U_WC4Tz8Zn6dMSlunhVavg6BAQqgb1-QOFgCqE&usqp=CAU");
 }
 
 #cocktail-2-image{
-    border-style: inset;
+    border-style: double;
     margin: 10px;
     border-color: rgb(0, 20, 202);
-    border-width: 6px;
+    border-width: 8px;
     
     
 }
 
 #cocktail-1-image{
-    border-style: inset;
+    border-style: double;
     margin: 10px;
     border-color: rgb(0, 20, 202);
-    border-width: 6px;
+    border-width: 8px;
     
 }
 
@@ -113,11 +115,12 @@ h2{
     margin-left: 20px;
     background-image: none;
     font-size: 45px;
+    margin-bottom: 400px;
 }
 
 ul{
     border-style: double;
-    border-width: 4px;
+    border-width: 8px;
     color: rgb(66, 0, 173);
     text-align: center;
     background-image: url("https://papers.co/wallpaper/papers.co-nf87-city-night-lights-building-pattern-dark-night-30-wallpaper.jpg");
@@ -136,15 +139,47 @@ ol{
 }
 
 #drink-pop-up{
-    margin-left: 730px;
+    position: static;
+    margin-left: 720px;
 }
 
 #cocktail-3-text{
+    position: relative;
     margin-right: 800px;
     text-align: center;
 }
 
 #cocktail-3-recipe-list{
+    position: relative;
     margin-right: 800px;
     text-align: center;
+}
+
+.glow{
+    border-style: double;
+    border-color: azure;
+    border-width: 20px;
+}
+
+h6{
+    border-style: double;
+    border-width: 5px;
+    background-color: rgb(123, 0, 150);
+}
+
+#rank-list{
+    text-align: center;
+    text-shadow: 3px 2px 2px rgb(165, 105, 255);
+    font-weight: bolder;
+    border-width: 10px;
+    border-style: double;
+    border-top-color: rgb(244, 97, 255);
+    border-left-color: rgb(244, 97, 255);
+    
+}
+
+#cocktail-3-image{
+    border-style: double;
+    border-width: 8px;
+    border-color: blue;
 }

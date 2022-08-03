@@ -7,8 +7,7 @@ const urlMargarita="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=mar
 const urlDrinkRatings="https://fake-server-app-jjs2.herokuapp.com/drink_ratings"
 const urlTotalRatings="https://fake-server-app-jjs2.herokuapp.com/total_ratings"
 //const urlDrinkRatings="./ratings.json/drink_ratings"
-//const urlTotalRatings="./ratings.json/total_ratings"
-const urlLocalRatings="./ratings.json"
+const urlLocalTotalRatings="./ratings.json/total_ratings"
 const urlDrinkName="https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 let drinkWinner=1
 var totalRatings 
@@ -40,12 +39,17 @@ const li3=document.querySelector('#id3')
 const li4=document.querySelector('#id4')
 const li5=document.querySelector('#id5')
 const divPopUpDrink=document.querySelector('#drink-pop-up')
+
+const divFilter=document.querySelector('#filter')
+const divDropdown=document.querySelector('#dropdown')
+
 const cocktailThreeText=document.querySelector('#cocktail-3-text')
 const li6=document.querySelector('#cocktail-3-recipe1')
 const li7=document.querySelector('#cocktail-3-recipe2')
 const li8=document.querySelector('#cocktail-3-recipe3')
 const li9=document.querySelector('#cocktail-3-recipe4')
 const li10=document.querySelector('#cocktail-3-recipe5')
+
 
 
 
@@ -60,6 +64,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     sortRankings()
  
  })
+
+ // Filter Dropdown mouseover event
+ divFilter.addEventListener('mouseover',(e)=>{
+    //console.log(e)
+    divDropdown.classList.remove("vanish")
+ })
+
+ // Filter Dropdown mouseover event
+ divFilter.addEventListener('mouseout',(e)=>{
+    //console.log(e)
+    divDropdown.classList.add("vanish")
+ })
+
 
  function calcElo(h6Winner,h6Loser){
 //test 2
@@ -92,7 +109,14 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
  }
-
+imgDrink1.addEventListener('mouseover', (e)=>{
+    imgDrink1.classList.add("glow")
+    imgDrink1.setAttribute("style", "border-color:white;")
+})
+imgDrink1.addEventListener('mouseout', (e)=>{
+    imgDrink1.classList.remove("glow")
+    imgDrink1.setAttribute("style", "border-color:blue;")
+})
 
  divCocktail1.addEventListener('click',()=>{
     drinkWinner=1
@@ -107,6 +131,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     updateDrinkRatings(divCocktail2,parseInt(h6Rating2.textContent))
     
 
+})
+
+imgDrink2.addEventListener('mouseover', (e)=>{
+    imgDrink2.classList.add("glow")
+    imgDrink2.setAttribute("style", "border-color:white;")
+    
+})
+
+imgDrink2.addEventListener('mouseout', (e)=>{
+    imgDrink2.classList.add("glow")
+    imgDrink2.setAttribute("style", "border-color:blue;")
 })
 
 divCocktail2.addEventListener('click',()=>{
@@ -258,7 +293,7 @@ function postNewDrinkRating(drinkName,score){
 // Get the total rankings
 function getTotalRankings(){
     fetch (urlTotalRatings)
-    //fetch ("ratings.json/total_ratings")
+    //fetch ("./ratings.json/total_ratings")
         .then(res=>res.json())
         .then(data=>{
             totalRatings=data[0].total_ratings
@@ -312,6 +347,11 @@ function getSingleDrink(drinkName){
         li8.textContent=`${data.drinks[0].strMeasure3} ${data.drinks[0].strIngredient3}`
         li9.textContent=`${data.drinks[0].strMeasure4} ${data.drinks[0].strIngredient4}`
         li10.textContent=`${data.drinks[0].strMeasure5} ${data.drinks[0].strIngredient5}`
+            if(data.drinks[0].strIngredient1==null) {li6.remove()}
+            if(data.drinks[0].strIngredient2==null) {li7.remove()}
+            if(data.drinks[0].strIngredient3==null) {li8.remove()}
+            if(data.drinks[0].strIngredient4==null) {li9.remove()}
+            if(data.drinks[0].strIngredient5==null) {li10.remove()}
         
 
 
