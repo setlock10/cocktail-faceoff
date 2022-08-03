@@ -51,6 +51,8 @@ const li10=document.querySelector('#cocktail-3-recipe5')
 const btnLikes1=document.querySelector('#btnLikes1')
 const btnLikes2=document.querySelector('#btnLikes2')
 
+
+
 const checkedVodka =true
 const checkedGin = true
 const checkedBourbon = true
@@ -63,8 +65,8 @@ const checkedTequilla = true
 //  page load
 document.addEventListener('DOMContentLoaded',()=>{
     //Populates the Cocktail Div Cards
-    getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
-    getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
+    getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1,btnLikes1)
+    getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2,btnLikes2)
 
     //Gets the current power rankings from ratings.json
     getTotalRankings()
@@ -129,7 +131,7 @@ imgDrink1.addEventListener('mouseout', (e)=>{
 
 })
 
- divCocktail1.addEventListener('click',()=>{
+ imgDrink1.addEventListener('click',()=>{
     drinkWinner=1
 
     updateTotalRankings()
@@ -155,7 +157,7 @@ imgDrink2.addEventListener('mouseout', (e)=>{
     imgDrink2.setAttribute("style", "border-color:blue;")
 })
 
-divCocktail2.addEventListener('click',()=>{
+imgDrink2.addEventListener('click',()=>{
     drinkWinner=2
     updateTotalRankings()
 
@@ -377,8 +379,11 @@ function getSingleDrink(drinkName){
 
 
 
+
+
+
 // Fetch a drink
-function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating){
+function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating,btn){
 
     fetch(url)
         .then(res=>res.json())
@@ -399,6 +404,12 @@ function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating){
             if(data.drinks[0].strIngredient3==null) {li3.remove()}
             if(data.drinks[0].strIngredient4==null) {li4.remove()}
             if(data.drinks[0].strIngredient5==null) {li5.remove()}
+
+            btn.addEventListener('click', () => {
+                btn.textContent="Liked"
+                //console.log("click")
+              
+            })
 
             
 
