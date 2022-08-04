@@ -62,28 +62,14 @@ var checkedTequilla = true
 document.addEventListener('DOMContentLoaded',()=>{
     //Populates the Cocktail Div Cards
     getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
+    
     getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
-
-    //Gets the current power rankings from ratings.json
+    
     getTotalRankings()
     sortRankings()
-    handleCheckBoxes()
-
-    //document.cookie = 'ppkcookie1=testcookie; expires=Thu, 2 Aug 2001 20:47:11 UTC; path=/'
     
  })
 
- // Filter Dropdown mouseover event
- divFilter.addEventListener('mouseover',(e)=>{
-    //console.log(e)
-    divDropdown.classList.remove("vanish")
- })
-
- // Filter Dropdown mouseover event
- divFilter.addEventListener('mouseout',(e)=>{
-    //console.log(e)
-    divDropdown.classList.add("vanish")
- })
 
 
  function calcElo(h6Winner,h6Loser){
@@ -105,17 +91,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     
     h6Winner.textContent=parseInt(tempRating1+kFactor*(1-prob1))
-    //result1L=tempRating1+kFactor*(0-prob1)
-    //result2W=tempRating2+kFactor*(1-prob2)
     h6Loser.textContent=parseInt(tempRating2+kFactor*(0-prob2))
-    //h6Loser.textContent=tempRating2+kFactor*(0-prob2)
-
-
-    
-
-
-
-
+ 
  }
 
 
@@ -165,11 +142,6 @@ function sortRankings(){
                 getSingleDrink(drinks[i].strDrink)
                 divPopUpDrink.addEventListener('click',()=>{
                     divPopUpDrink.classList.remove("appear")
-                    
-                    
-                    
-
-                    
                 })
             })
         }
@@ -270,11 +242,14 @@ function postNewDrinkRating(drinkName,score){
         .then(res=>res.json())
         .then(data=>{
             //location.reload()
-            getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
-            getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
+            if (getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)===false){
+                getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
+            }
         
-
-        })
+            if (getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)===false){
+                getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
+            }
+                })
         .catch(e=>console.error(e))
 
 
@@ -356,11 +331,17 @@ function getSingleDrink(drinkName){
 
 // Fetch a drink
 function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating){
+    
 
     fetch(url)
         .then(res=>res.json())
         .then(data=>{
-            //drink=data.drinks[0]
+            drink=data.drinks[0]
+
+            //does drink contain a filtered ingredient?
+             //getDrink.call(this)
+
+            //debugger
             //console.log(data.drinks[0])
             img.src=data.drinks[0].strDrinkThumb
             img.width=360
@@ -381,19 +362,35 @@ function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating){
 
             getDrinkRatings(h6Rating,data.drinks[0].strDrink)
 
+            //console.log(data.drinks[0])
+            
 
-
-
-
+            if (isFiltered(data.drinks[0])===true){
+                //debugger
+                return false
+            }
+            else{
+                return true
+            }
 
         })
         .catch(e=>console.error(e))
 }
 
-// CheckBoxes
-function handleCheckBoxes()
-{
-     
+// CheckBox Event handlers
+
+    // Filter Dropdown mouseover event
+    divFilter.addEventListener('mouseover',(e)=>{
+        //console.log(e)
+        divDropdown.classList.remove("vanish")
+    })
+
+    // Filter Dropdown mouseover event
+    divFilter.addEventListener('mouseout',(e)=>{
+        //console.log(e)
+        divDropdown.classList.add("vanish")
+    })
+
 
     divDropdown.children[0].addEventListener('change',()=>{
         if (divDropdown.children[0].checked===true) {checkedVodka=true;}
@@ -401,15 +398,16 @@ function handleCheckBoxes()
        
     })
     divDropdown.children[2].addEventListener('change',()=>{
-        if (divDropdown.children[8].checked===true) {checkedGin=true}
+        if (divDropdown.children[2].checked===true) {checkedGin=true}
         else{ checkedGin=false}
+        console.log(checkedGin)
      })
     divDropdown.children[4].addEventListener('change',()=>{
-        if (divDropdown.children[8].checked===true) {checkedBourbon=true}
+        if (divDropdown.children[4].checked===true) {checkedBourbon=true}
         else{ checkedBourbon=false}
         })
     divDropdown.children[6].addEventListener('change',()=>{
-        if (divDropdown.children[8].checked===true) {checkedWhiskey=true}
+        if (divDropdown.children[6].checked===true) {checkedWhiskey=true}
         else{ checkedWhiskey=false}
        })
     divDropdown.children[8].addEventListener('change',()=>{
@@ -419,47 +417,36 @@ function handleCheckBoxes()
     
 
 
-        //console.log(divDropdown.children)
-    
- 
 
+ 
+//} handle check
+
+function isFiltered(drink){
+
+    if (drink.strIngredient1=="Gin"&&(checkedGin===false)){
+        console.log("Gin :(")
+        return true
+    }
+     if (drink.strIngredient1=="Vodka"&&(checkedVodka===false)){
+        console.log("Vodka :(")
+        return true
+    }
+
+     if (drink.strIngredient1=="Bourbon"&&(checkedBourbon===false)){
+        console.log("Bourbon :(")
+        return true
+    }
+ 
+     if (drink.strIngredient1=="Whiskey"&&(checkedWhiskey===false)){
+        console.log("Whiskey :(")
+        return true
+    }
+     if (drink.strIngredient1=="Tequilla"&&(checkedWhiskey===false)){
+        console.log("Tequilla :(")
+        return true
+    }
+    
+        return false
+   
 }
 
-// //Cookies
-// function createCookie(name,value,days) {
-// 	if (days) {
-// 		var date = new Date();
-// 		date.setTime(date.getTime()+(days*24*60*60*1000));
-// 		var expires = "; expires="+date.toGMTString();
-// 	}
-// 	else var expires = "";
-// 	document.cookie = name+"="+value+expires+"; path=/";
-// }
-
-// function readCookie(name) {
-// 	var nameEQ = name + "=";
-// 	var ca = document.cookie.split(';');
-// 	for(var i=0;i < ca.length;i++) {
-// 		var c = ca[i];
-// 		while (c.charAt(0)==' ') c = c.substring(1,c.length);
-// 		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-// 	}
-// 	return null;
-// }
-
-// function eraseCookie(name) {
-// 	createCookie(name,"",-1);
-// }
-
-// function setCookies(){
-//     createCookie(checkedVodka,true,10)
-//     createCookie(checkedGin,true,10)
-//     createCookie(checkedBourbon,true,10)
-//     createCookie(checkedWhiskey,true,10)
-//     createCookie(checkedTequilla,true,10)
-    
-// }
-
-// function setChecks(){
-    
-// }
