@@ -53,11 +53,11 @@ const btnLikes2=document.querySelector('#btnLikes2')
 
 
 
-const checkedVodka =true
-const checkedGin = true
-const checkedBourbon = true
-const checkedWhiskey = true
-const checkedTequilla = true
+var checkedVodka =true
+var checkedGin = true
+var checkedBourbon = true
+var checkedWhiskey = true
+var checkedTequilla = true
 
 
 
@@ -65,29 +65,17 @@ const checkedTequilla = true
 //  page load
 document.addEventListener('DOMContentLoaded',()=>{
     //Populates the Cocktail Div Cards
+
     getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1,btnLikes1)
     getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2,btnLikes2)
 
     //Gets the current power rankings from ratings.json
+ 
     getTotalRankings()
     sortRankings()
-    handleCheckBoxes()
-
-    //document.cookie = 'ppkcookie1=testcookie; expires=Thu, 2 Aug 2001 20:47:11 UTC; path=/'
     
  })
 
- // Filter Dropdown mouseover event
- divFilter.addEventListener('mouseover',(e)=>{
-    //console.log(e)
-    divDropdown.classList.remove("vanish")
- })
-
- // Filter Dropdown mouseover event
- divFilter.addEventListener('mouseout',(e)=>{
-    //console.log(e)
-    divDropdown.classList.add("vanish")
- })
 
 
  function calcElo(h6Winner,h6Loser){
@@ -109,27 +97,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     
     h6Winner.textContent=parseInt(tempRating1+kFactor*(1-prob1))
-    //result1L=tempRating1+kFactor*(0-prob1)
-    //result2W=tempRating2+kFactor*(1-prob2)
     h6Loser.textContent=parseInt(tempRating2+kFactor*(0-prob2))
-    //h6Loser.textContent=tempRating2+kFactor*(0-prob2)
-
-
-    
-
-
-
-
+ 
  }
-imgDrink1.addEventListener('mouseover', (e)=>{
-    imgDrink1.classList.add("glow")
-    imgDrink1.setAttribute("style", "border-color:white;")
-})
-imgDrink1.addEventListener('mouseout', (e)=>{
-    imgDrink1.classList.remove("glow")
-    imgDrink1.setAttribute("style", "border-color:blue;")
 
-})
 
  imgDrink1.addEventListener('click',()=>{
     drinkWinner=1
@@ -145,6 +116,7 @@ imgDrink1.addEventListener('mouseout', (e)=>{
     
 
 })
+
 
 imgDrink2.addEventListener('mouseover', (e)=>{
     imgDrink2.classList.add("glow")
@@ -188,11 +160,6 @@ function sortRankings(){
                 getSingleDrink(drinks[i].strDrink)
                 divPopUpDrink.addEventListener('click',()=>{
                     divPopUpDrink.classList.remove("appear")
-                    
-                    
-                    
-
-                    
                 })
             })
         }
@@ -292,9 +259,15 @@ function postNewDrinkRating(drinkName,score){
     })
         .then(res=>res.json())
         .then(data=>{
-            location.reload()
-
-        })
+            //location.reload()
+            if (getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)===false){
+                getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
+            }
+        
+            if (getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)===false){
+                getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
+            }
+                })
         .catch(e=>console.error(e))
 
 
@@ -362,11 +335,6 @@ function getSingleDrink(drinkName){
         li8.textContent=`${data.drinks[0].strMeasure3} ${data.drinks[0].strIngredient3}`
         li9.textContent=`${data.drinks[0].strMeasure4} ${data.drinks[0].strIngredient4}`
         li10.textContent=`${data.drinks[0].strMeasure5} ${data.drinks[0].strIngredient5}`
-            if(data.drinks[0].strIngredient1==null) {li6.remove()}
-            if(data.drinks[0].strIngredient2==null) {li7.remove()}
-            if(data.drinks[0].strIngredient3==null) {li8.remove()}
-            if(data.drinks[0].strIngredient4==null) {li9.remove()}
-            if(data.drinks[0].strIngredient5==null) {li10.remove()}
         
 
 
@@ -383,12 +351,20 @@ function getSingleDrink(drinkName){
 
 
 // Fetch a drink
+   
+
 function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating,btn){
+
 
     fetch(url)
         .then(res=>res.json())
         .then(data=>{
-            //drink=data.drinks[0]
+            drink=data.drinks[0]
+
+            //does drink contain a filtered ingredient?
+             //getDrink.call(this)
+
+            //debugger
             //console.log(data.drinks[0])
             img.src=data.drinks[0].strDrinkThumb
             img.width=360
@@ -415,69 +391,91 @@ function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating,btn){
 
             getDrinkRatings(h6Rating,data.drinks[0].strDrink)
 
+            //console.log(data.drinks[0])
+            
 
-
-
-
+            if (isFiltered(data.drinks[0])===true){
+                //debugger
+                return false
+            }
+            else{
+                return true
+            }
 
         })
         .catch(e=>console.error(e))
-
 }
 
-// CheckBoxes
-function handleCheckBoxes()
-{
-    if (readCookie(checkedVodka)==null){
-        setCookies()
-    }
-    else{
-        setChecks()
-    }
+// CheckBox Event handlers
 
+    // Filter Dropdown mouseover event
+    divFilter.addEventListener('mouseover',(e)=>{
+        //console.log(e)
+        divDropdown.classList.remove("vanish")
+    })
+
+    // Filter Dropdown mouseover event
+    divFilter.addEventListener('mouseout',(e)=>{
+        //console.log(e)
+        divDropdown.classList.add("vanish")
+    })
+
+
+    divDropdown.children[0].addEventListener('change',()=>{
+        if (divDropdown.children[0].checked===true) {checkedVodka=true;}
+        else{ checkedVodka=false;}
+       
+    })
+    divDropdown.children[2].addEventListener('change',()=>{
+        if (divDropdown.children[2].checked===true) {checkedGin=true}
+        else{ checkedGin=false}
+        console.log(checkedGin)
+     })
+    divDropdown.children[4].addEventListener('change',()=>{
+        if (divDropdown.children[4].checked===true) {checkedBourbon=true}
+        else{ checkedBourbon=false}
+        })
+    divDropdown.children[6].addEventListener('change',()=>{
+        if (divDropdown.children[6].checked===true) {checkedWhiskey=true}
+        else{ checkedWhiskey=false}
+       })
+    divDropdown.children[8].addEventListener('change',()=>{
+        if (divDropdown.children[8].checked===true) {checkedTequilla=true}
+        else{ checkedTequilla=false}
+       })
     
-        console.log(divDropdown.children)
-    
+
+
+
  
+//} handle check
 
-}
+function isFiltered(drink){
 
-//Cookies
-function createCookie(name,value,days) {
-	if (days) {
-		var date = new Date();
-		date.setTime(date.getTime()+(days*24*60*60*1000));
-		var expires = "; expires="+date.toGMTString();
-	}
-	else var expires = "";
-	document.cookie = name+"="+value+expires+"; path=/";
-}
+    if (drink.strIngredient1=="Gin"&&(checkedGin===false)){
+        console.log("Gin :(")
+        return true
+    }
+     if (drink.strIngredient1=="Vodka"&&(checkedVodka===false)){
+        console.log("Vodka :(")
+        return true
+    }
 
-function readCookie(name) {
-	var nameEQ = name + "=";
-	var ca = document.cookie.split(';');
-	for(var i=0;i < ca.length;i++) {
-		var c = ca[i];
-		while (c.charAt(0)==' ') c = c.substring(1,c.length);
-		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-	}
-	return null;
-}
-
-function eraseCookie(name) {
-	createCookie(name,"",-1);
-}
-
-function setCookies(){
-    createCookie(checkedVodka,true,10)
-    createCookie(checkedGin,true,10)
-    createCookie(checkedBourbon,true,10)
-    createCookie(checkedWhiskey,true,10)
-    createCookie(checkedTequilla,true,10)
+     if (drink.strIngredient1=="Bourbon"&&(checkedBourbon===false)){
+        console.log("Bourbon :(")
+        return true
+    }
+ 
+     if (drink.strIngredient1=="Whiskey"&&(checkedWhiskey===false)){
+        console.log("Whiskey :(")
+        return true
+    }
+     if (drink.strIngredient1=="Tequilla"&&(checkedWhiskey===false)){
+        console.log("Tequilla :(")
+        return true
+    }
     
+        return false
+   
 }
 
-function setChecks(){
-    
-
-}
