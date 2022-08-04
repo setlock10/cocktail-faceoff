@@ -18,8 +18,8 @@ body {
 
 #rank-list{
     position: absolute;
-    margin-left: 1000px;
-    margin-top: -300px;
+    margin-left: 900px;
+    margin-top: -250px;
     font-size: 35px;
     font-family: 'Courier New', Courier, monospace;
     border-style: groove;
@@ -54,6 +54,7 @@ body {
     margin: 2rem;
     padding: 20px;
     margin-left: 475px;
+    margin-top: -100px;
  
 }
 
@@ -141,6 +142,7 @@ ol{
 #drink-pop-up{
     position: static;
     margin-left: 720px;
+
 }
 
 #cocktail-3-text{
@@ -166,6 +168,8 @@ h6{
     border-style: double;
     border-width: 5px;
     background-color: rgb(123, 0, 150);
+    height: 40px;
+    text-align: center;
 }
 
 #rank-list{
@@ -185,3 +189,20 @@ h6{
     border-color: blue;
 }
 
+.like-glyph {
+    cursor: pointer;
+  }
+  
+#like-image-1{
+    width: 50px;
+    border-style: groove;
+    border-color: dodgerblue;
+    background-color: blueviolet;
+}
+
+#like-image-2{
+    width: 50px;
+    border-style: groove;
+    border-color: dodgerblue;
+    background-color: blueviolet;
+}

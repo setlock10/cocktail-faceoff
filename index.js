@@ -48,6 +48,10 @@ const li7=document.querySelector('#cocktail-3-recipe2')
 const li8=document.querySelector('#cocktail-3-recipe3')
 const li9=document.querySelector('#cocktail-3-recipe4')
 const li10=document.querySelector('#cocktail-3-recipe5')
+const btnLikes1=document.querySelector('#btnLikes1')
+const btnLikes2=document.querySelector('#btnLikes2')
+
+
 
 var checkedVodka =true
 var checkedGin = true
@@ -61,10 +65,12 @@ var checkedTequilla = true
 //  page load
 document.addEventListener('DOMContentLoaded',()=>{
     //Populates the Cocktail Div Cards
-    getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
-    
-    getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
-    
+
+    getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1,btnLikes1)
+    getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2,btnLikes2)
+
+    //Gets the current power rankings from ratings.json
+ 
     getTotalRankings()
     sortRankings()
     
@@ -96,7 +102,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
 
 
- divCocktail1.addEventListener('click',()=>{
+ imgDrink1.addEventListener('click',()=>{
     drinkWinner=1
 
     updateTotalRankings()
@@ -111,7 +117,19 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 })
 
-divCocktail2.addEventListener('click',()=>{
+
+imgDrink2.addEventListener('mouseover', (e)=>{
+    imgDrink2.classList.add("glow")
+    imgDrink2.setAttribute("style", "border-color:white;")
+    
+})
+
+imgDrink2.addEventListener('mouseout', (e)=>{
+    imgDrink2.classList.add("glow")
+    imgDrink2.setAttribute("style", "border-color:blue;")
+})
+
+imgDrink2.addEventListener('click',()=>{
     drinkWinner=2
     updateTotalRankings()
 
@@ -329,9 +347,14 @@ function getSingleDrink(drinkName){
 
 
 
+
+
+
 // Fetch a drink
-function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating){
-    
+   
+
+function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating,btn){
+
 
     fetch(url)
         .then(res=>res.json())
@@ -357,6 +380,12 @@ function getDrink(url,img,h2,li1,li2,li3,li4,li5,h6Rating){
             if(data.drinks[0].strIngredient3==null) {li3.remove()}
             if(data.drinks[0].strIngredient4==null) {li4.remove()}
             if(data.drinks[0].strIngredient5==null) {li5.remove()}
+
+            btn.addEventListener('click', () => {
+                btn.textContent="Liked"
+                //console.log("click")
+              
+            })
 
             
 
