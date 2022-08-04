@@ -101,6 +101,16 @@ document.addEventListener('DOMContentLoaded',()=>{
  
  }
 
+ imgDrink1.addEventListener('mouseover', (e)=>{
+    imgDrink1.classList.add("glow")
+    imgDrink1.setAttribute("style", "border-color:white;")
+    
+})
+
+imgDrink1.addEventListener('mouseout', (e)=>{
+    imgDrink1.classList.add("glow")
+    imgDrink1.setAttribute("style", "border-color:blue;")
+})
 
  imgDrink1.addEventListener('click',()=>{
     drinkWinner=1
