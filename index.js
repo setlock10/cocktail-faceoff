@@ -346,7 +346,11 @@ function getSingleDrink(drinkName){
         li8.textContent=`${data.drinks[0].strMeasure3} ${data.drinks[0].strIngredient3}`
         li9.textContent=`${data.drinks[0].strMeasure4} ${data.drinks[0].strIngredient4}`
         li10.textContent=`${data.drinks[0].strMeasure5} ${data.drinks[0].strIngredient5}`
-        
+        if(data.drinks[0].strIngredient1==null) {li6.remove()}
+        if(data.drinks[0].strIngredient2==null) {li7.remove()}
+        if(data.drinks[0].strIngredient3==null) {li8.remove()}
+        if(data.drinks[0].strIngredient4==null) {li9.remove()}
+        if(data.drinks[0].strIngredient5==null) {li10.remove()}
 
 
     })
