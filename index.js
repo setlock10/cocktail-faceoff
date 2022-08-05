@@ -1,3 +1,4 @@
+
 // index.js
 //
 //Global variables
@@ -270,14 +271,14 @@ function postNewDrinkRating(drinkName,score){
         .then(res=>res.json())
         .then(data=>{
             //location.reload()
-            if (getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)===false){
-                getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1)
-            }
+            getDrink(urlRandom,imgDrink1,h2Drink1,liDrink1_1,liDrink1_2,liDrink1_3,liDrink1_4,liDrink1_5,h6Rating1,btnLikes1)
+            getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2,btnLikes2)
         
-            if (getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)===false){
-                getDrink(urlRandom,imgDrink2,h2Drink2,liDrink2_1,liDrink2_2,liDrink2_3,liDrink2_4,liDrink2_5,h6Rating2)
-            }
-                })
+            //Gets the current power rankings from ratings.json
+         
+            getTotalRankings()
+            sortRankings()
+                        })
         .catch(e=>console.error(e))
 
 
@@ -488,4 +489,3 @@ function isFiltered(drink){
         return false
    
 }
-
